@@ -170,3 +170,123 @@ body::after {
     display: none;
     white-space: pre-line;
 }
+
+.error-container {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.error-circle {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    border: 2px dotted #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-icon {
+    font-size: 36px;
+}
+
+/* Error-specific icon colors */
+.error-icon-404 {
+    color: #ff5c5c;
+    /* Red for not found */
+}
+
+.error-icon-401 {
+    color: #ff9f1c;
+    /* Orange for unauthorized */
+}
+
+.error-icon-500 {
+    color: #ff5c5c;
+    /* Red for server error */
+}
+
+.error-status {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.error-message {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.error-code {
+    display: inline-block;
+    background: #f5f5f5;
+    padding: 6px 12px;
+    border-radius: 30px;
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 20px;
+}
+
+.back-button {
+    background: #4a75f4;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.back-button:hover {
+    background: #3a65e4;
+}
+
+.refresh-note {
+    font-size: 13px;
+    color: #999;
+    margin-top: 15px;
+}
+
+/* Additional styles for level indicator */
+.level-card {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    width: 140px;
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.level-label {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.level-number {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+}
+
+.level-points {
+    font-size: 12px;
+    color: #666;
+    margin-top: 4px;
+}

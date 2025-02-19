@@ -1,14 +1,17 @@
+import { navigateto } from './../router.js'
+
 export class Login {
     constructor(app) {
-        this.app = app;
+        this.router = app;
         this.base64 = null;
         this.jwt = null;
         this.loged = false;
-        // this.username = '';
-        // this.password = '';
     }
     renderhtml() {
-        const container = document.querySelector('.app');
+        const app = document.querySelector('.app');
+        app.style.display = 'none';
+        const container = document.querySelector('.login');
+        container.style.style.display = 'block';
         const form = document.createElement('form');
         form.className = 'login-container';
         const loginheader = document.createElement('div');
@@ -66,7 +69,8 @@ export class Login {
         })
         if (res.ok) {
             this.jwt = await res.json();
-            this.loged = true;
+            localStorage.setItem('jwt', this.jwt);
+            navigateto(this.router, '/');
         }
     }
 
@@ -74,8 +78,6 @@ export class Login {
         const button = document.querySelector('.login-button');
         button.addEventListener('click', async (event) => {
             await this.submitedata();
-            this.app.jwt = this.jwt;
-            this.app.renderHtml();
         })
     }
 }
