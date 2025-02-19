@@ -19,7 +19,6 @@ export class XPChart {
 
     init() {
         this.drawBackground();
-        // this.setupEventListeners();
     }
 
     drawBackground() {
@@ -150,44 +149,15 @@ export class XPChart {
             this.svg.appendChild(circle);
 
             // X-axis label
-            const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-            text.setAttribute('x', x);
-            text.setAttribute('y', this.height - this.padding + 20);
-            text.setAttribute('text-anchor', 'middle');
-            text.setAttribute('font-size', '12');
-            text.setAttribute('fill', '#666');
-            text.setAttribute('transform', `rotate(45, ${x}, ${this.height - this.padding + 20})`);
-            text.textContent = this.formatDate(d.date);
-            this.svg.appendChild(text);
+            // const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            // text.setAttribute('x', x);
+            // text.setAttribute('y', this.height - this.padding + 20);
+            // text.setAttribute('text-anchor', 'middle');
+            // text.setAttribute('font-size', '12');
+            // text.setAttribute('fill', '#666');
+            // text.setAttribute('transform', `rotate(45, ${x}, ${this.height - this.padding + 20})`);
+            // text.textContent = this.formatDate(d.date);
+            // this.svg.appendChild(text);
         });
-    }
-
-    setupEventListeners() {
-        this.svg.addEventListener('mousemove', (e) => {
-            const target = e.target;
-            if (target.tagName === 'circle') {
-                const index = target.dataset.index;
-                const data = this.data[index];
-                const tooltipText = `Project: ${data.object.name}\nXP: ${this.formatXP(data.amount)}\nTotal XP: ${this.formatXP(data.cumulativeXP)}\nDate: ${data.date.toLocaleDateString()}`;
-                this.showTooltip(e.clientX, e.clientY, tooltipText);
-            } else {
-                this.hideTooltip();
-            }
-        });
-
-        this.svg.addEventListener('mouseleave', () => {
-            this.hideTooltip();
-        });
-    }
-
-    showTooltip(x, y, text) {
-        this.tooltip.style.display = 'block';
-        this.tooltip.style.left = `${x + 10}px`;
-        this.tooltip.style.top = `${y - 10}px`;
-        this.tooltip.textContent = text;
-    }
-
-    hideTooltip() {
-        this.tooltip.style.display = 'none';
     }
 }

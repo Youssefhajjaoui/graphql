@@ -6,31 +6,31 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"strings"
 )
 
 func main() {
 	server := http.NewServeMux()
 	server.HandleFunc("/assets/", func(w http.ResponseWriter, r *http.Request) {
 		if r.Method != http.MethodGet {
-			RespondWithError(w, "Method Not Allowed", http.StatusMethodNotAllowed)
+			fmt.Println("here")
+			// RespondWithError(w, "Method Not Allowed", http.StatusMethodNotAllowed)
 			return
 		}
-		if strings.HasSuffix(r.URL.Path, "/") {
-			RespondWithError(w, "Page Not Found", http.StatusNotFound)
-			return
-		}
-		http.FileServer(http.Dir(".")).ServeHTTP(w, r)
+		// if strings.HasSuffix(r.URL.Path, "/") {
+		// 	RespondWithError(w, "Page Not Found", http.StatusNotFound)
+		// 	return
+		// }
+		http.FileServer(http.Dir("./web")).ServeHTTP(w, r)
 	})
 	server.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		if r.URL.Path != "/" {
-			RespondWithError(w, "Page Not Found", http.StatusNotFound)
-			return
-		}
-		html, err := os.ReadFile("./src/html/index.html")
+		// if r.URL.Path != "/" {
+		// 	// RespondWithError(w, "Page Not Found", http.StatusNotFound)
+		// 	return
+		// }
+		html, err := os.ReadFile("./web/index.html")
 		if err != nil {
 			fmt.Fprintln(os.Stderr, err)
-			RespondWithError(w, "Internal Server Error", http.StatusNotFound)
+			// RespondWithError(w, "Internal Server Error3232", http.StatusNotFound)
 			return
 		}
 		w.Write(html)

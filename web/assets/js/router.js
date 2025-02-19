@@ -10,28 +10,23 @@ export class Router {
 
     handleRoute() {
         const path = document.location.pathname;
-        console.log(path);
+        let view = null;
+        console.log('yes');
 
-        this.routes.forEach((route) => {
-            if (route.route === path) {
-                if (localStorage.getItem('jwt')) {
-                    const page = new Home();
-                    page.renderHtml();
-                } else {
-                    history.pushState(null, null, '/login');
-                    const page = new Login();
-                    page.renderhtml();
-                    page.afterRender();
-                }
-            } else {
-                const page = new ErrorPage('404');
-                page.renderHtml();
-            }
-        })
+        if (localStorage.getItem('jwt') && path == '/') {
+            view = new Home(this);
+        } else if ((!localStorage.getItem('jwt') && path == '/') || path == '/login') {
+            view = new Login(this);
+        }
+        if (!view) {
+            view = new ErrorPage(this);
+        }
+        view.renderHtml();
+        view.afterRender();
     }
-}
 
-export function navigateto(router, path) {
-    history.pushState(null, null, path);
-    router.handleRoute();
+    navigateto(path) {
+        history.pushState(null, null, path);
+        this.handleRoute();
+    }
 }

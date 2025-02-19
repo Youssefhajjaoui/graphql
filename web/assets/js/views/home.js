@@ -1,7 +1,9 @@
+// import { Router } from "../router.js";
 import { XPChart } from "./xpchart.js";
 
 export class Home {
-    constructor() {
+    constructor(router) {
+        this.router = router;
     }
 
     async getProgress() {
@@ -33,13 +35,29 @@ export class Home {
         const app = document.querySelector('.app');
         app.style.display = 'block';
         const login = document.querySelector('.login');
-        app.style.style.display = 'none';
-        const progress = document.querySelector('.progress');
+        login.innerHTML = "";
+        // const progress = document.querySelector('.progress');
+        // progress.innerHTML = '';
         const response = await this.getProgress();
 
         const transactions = response.data;
         // console.log(transactions.data.transaction);
         const chart = new XPChart('.chart-container');
         chart.updateData(transactions);
+    }
+
+    afterRender() {
+        const botton = document.createElement('button');
+        botton.className = 'logout';
+        botton.textContent = 'logout';
+        const app = document.querySelector('.app');
+        app.append(botton);
+
+        botton.addEventListener('click', () => {
+            console.log('fired');
+            localStorage.clear();
+            this.router.navigateto('/login');
+            botton.remove();
+        })
     }
 } 
