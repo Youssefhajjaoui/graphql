@@ -32,7 +32,7 @@ export class XPChart {
 
     updateData(rawData) {
         // Process the transaction data
-        console.log(rawData);
+        // console.log(rawData);
 
         const transactions = rawData.data.transaction;
 
@@ -67,8 +67,14 @@ export class XPChart {
 
     render() {
         this.drawBackground();
+        let maxXP = 0;
+        this.data.forEach((a) => {
+            maxXP = maxXP + a.amount;
 
-        const maxXP = Math.max(...this.data.map(d => d.cumulativeXP));
+        })
+        console.log(this.data);
+
+        // const maxXP = this.data.reduce((a, b) => a + b, 0);
         const minXP = 0;
         const chartWidth = this.width - 2 * this.padding;
         const chartHeight = this.height - 2 * this.padding;
@@ -133,6 +139,8 @@ export class XPChart {
         polyline.setAttribute('stroke', '#00BCD4');
         polyline.setAttribute('stroke-width', '2');
         this.svg.appendChild(polyline);
+
+        console.log(maxXP);
 
         // Draw points and x-axis labels
         this.data.forEach((d, i) => {

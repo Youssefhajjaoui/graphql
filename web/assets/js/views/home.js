@@ -10,7 +10,7 @@ export class Home {
         let data = null;
         const jwt = localStorage.getItem('jwt');
         var graphql = JSON.stringify({
-            query: "{\n  transaction(where: {type: {_eq: \"xp\"}, object: {type: {_eq: \"project\"}}}) {\n    amount\n    objectId\n    object {\n      name\n    }\n  }\n}\n",
+            query: "{\n  transaction(where: {\n    type: {_eq: \"xp\"}, \n    object: {type: {_in: [\"piscine\" , \"project\"]}}\n  }) {\n    amount\n    objectId\n    object {\n      type\n      name\n    }\n  }\n}",
         });
         const response = await fetch('https://learn.zone01oujda.ma/api/graphql-engine/v1/graphql', {
             method: "POST",
