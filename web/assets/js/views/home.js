@@ -1,5 +1,7 @@
 // import { Router } from "../router.js";
 import { XPChart } from "./xpchart.js";
+import { Radarchart } from "./skills.js";
+import { Audit } from "./auditratio.js";
 
 export class Home {
     constructor(router) {
@@ -44,6 +46,10 @@ export class Home {
         // console.log(transactions.data.transaction);
         const chart = new XPChart('.chart-container');
         chart.updateData(transactions);
+        const skills = new Radarchart();
+        const auditratio = new Audit();
+        await auditratio.getAudit();
+        skills.getskills();
     }
 
     afterRender() {
@@ -54,7 +60,7 @@ export class Home {
         app.append(botton);
 
         botton.addEventListener('click', () => {
-            console.log('fired');
+            // console.log('fired');
             localStorage.clear();
             this.router.navigateto('/login');
             botton.remove();

@@ -72,7 +72,7 @@ export class XPChart {
             maxXP = maxXP + a.amount;
 
         })
-        console.log(this.data);
+        // console.log(this.data);
 
         // const maxXP = this.data.reduce((a, b) => a + b, 0);
         const minXP = 0;
@@ -140,7 +140,7 @@ export class XPChart {
         polyline.setAttribute('stroke-width', '2');
         this.svg.appendChild(polyline);
 
-        console.log(maxXP);
+        // console.log(maxXP);
 
         // Draw points and x-axis labels
         this.data.forEach((d, i) => {

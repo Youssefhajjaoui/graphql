@@ -11,7 +11,7 @@ export class Router {
     handleRoute() {
         const path = document.location.pathname;
         let view = null;
-        console.log('yes');
+        // console.log('yes');
 
         if (localStorage.getItem('jwt') && path == '/') {
             view = new Home(this);

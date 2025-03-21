@@ -290,3 +290,49 @@ body::after {
     color: #666;
     margin-top: 4px;
 }
+
+.skills-container {
+    width: 600px;
+    position: relative;
+}
+
+.chart-title {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+svg {
+    display: block;
+    margin: 0 auto;
+}
+
+.axis {
+    stroke: rgba(255, 255, 255, 0.5);
+    stroke-width: 1;
+}
+
+.grid {
+    stroke: rgba(255, 255, 255, 0.2);
+    stroke-width: 1;
+    fill: none;
+}
+
+.category-label {
+    fill: white;
+    font-size: 14px;
+    text-anchor: middle;
+    dominant-baseline: middle;
+}
+
+.polygon {
+    fill: rgba(149, 111, 214, 0.5);
+    stroke: rgba(149, 111, 214, 0.8);
+    stroke-width: 2;
+}
+
+.data-point {
+    fill: white;
+    r: 4;
+}
