@@ -60,7 +60,7 @@ function createRadarChart(categories, values) {
   const centerX = svgSize / 2;
   const centerY = svgSize / 2;
   const radius = Math.min(centerX, centerY) * 0.8;
-  const chartDiv = document.querySelector('.chart');
+  const chartDiv = document.querySelector('.skills');
   chartDiv.innerHTML = ''; // Clear previous content
 
   // Create SVG element

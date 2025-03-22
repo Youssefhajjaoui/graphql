@@ -13,6 +13,20 @@ body {
     background: linear-gradient(135deg, #1a237e 0%, #3949ab 100%);
     position: relative;
     overflow: hidden;
+    overflow: scroll;
+    gap: 10px;
+
+}
+
+.audit {
+    background-color: white;
+    border: solid 3px rgb(145, 145, 173);
+    border-radius: 10px;
+}
+
+.app {
+    display: grid;
+    grid-row: inherit;
 }
 
 /* Ambient light effects */
@@ -335,4 +349,55 @@ svg {
 .data-point {
     fill: white;
     r: 4;
+}
+
+.navbar {
+    background-color: #182c8548;
+    padding: 0 24px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    width: 100vw;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.nav-links {
+    display: flex;
+    list-style-type: none;
+}
+
+.nav-links li {
+    margin-left: 24px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.nav-links a:hover {
+    opacity: 1;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+}
+
+.nav-button {
+    background-color: #2951d627;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    margin-left: 16px;
+    cursor: pointer;
 }

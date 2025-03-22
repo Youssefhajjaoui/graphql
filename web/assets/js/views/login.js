@@ -9,6 +9,7 @@ export class Login {
     }
     renderHtml() {
         const app = document.querySelector('.app');
+        app.innerHTML = "";
         app.style.display = 'none';
         const container = document.querySelector('.login');
         container.style.display = 'block';
