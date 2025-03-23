@@ -8,7 +8,7 @@ export class Radarchart {
     const jwt = localStorage.getItem('jwt');
     var graphql = JSON.stringify({
       query: `{
-  transaction(where: { type: { _in: ["skill_prog", "skill_go", "skill_html", "skill_js"] } }) {
+  transaction(where: { type: { _in: ["skill_prog", "skill_go", "skill_html", "skill_js" , "skill_back-end" , "skill_front-end"] } }) {
     type
     amount
   }
@@ -65,9 +65,11 @@ function createRadarChart(categories, values) {
 
   // Create SVG element
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  svg.setAttribute('width', `${svgSize / 10}vmax`);
-  svg.setAttribute('height', `${svgSize / 10}vmin`);
+  svg.setAttribute('width', '100%');
+  svg.setAttribute('height', '100%');
   svg.setAttribute('viewBox', `0 0 ${svgSize} ${svgSize}`);
+  svg.style.display = 'block';
+  svg.style.margin = '0 auto';
   chartDiv.appendChild(svg);
 
   // Draw grid circles

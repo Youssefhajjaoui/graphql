@@ -1,9 +1,9 @@
 export class XPChart {
     constructor(selector) {
         this.container = document.querySelector(selector);
-        this.width = 500;
-        this.height = 400;
-        this.padding = 60;
+        this.width = 400;
+        this.height = 290;
+        this.padding = 15;
         this.data = [];
         this.tooltip = document.getElementById('tooltip');
 
@@ -28,6 +28,16 @@ export class XPChart {
         rect.setAttribute('height', this.height);
         rect.setAttribute('fill', 'white');
         this.svg.appendChild(rect);
+    }
+
+    // Add this method to your class
+    getMousePosition(evt) {
+        const CTM = this.svg.getScreenCTM();
+        if (evt.touches) { evt = evt.touches[0]; }
+        return {
+            x: (evt.clientX - CTM.e) / CTM.a,
+            y: (evt.clientY - CTM.f) / CTM.d
+        };
     }
 
     updateData(rawData) {
@@ -74,7 +84,6 @@ export class XPChart {
         })
         // console.log(this.data);
 
-        // const maxXP = this.data.reduce((a, b) => a + b, 0);
         const minXP = 0;
         const chartWidth = this.width - 2 * this.padding;
         const chartHeight = this.height - 2 * this.padding;
@@ -93,17 +102,6 @@ export class XPChart {
             line.setAttribute('stroke', '#E0E0E0');
             line.setAttribute('stroke-width', '1');
             this.svg.appendChild(line);
-
-            // Y-axis label
-            const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-            text.setAttribute('x', this.padding - 10);
-            text.setAttribute('y', y);
-            text.setAttribute('text-anchor', 'end');
-            text.setAttribute('dominant-baseline', 'middle');
-            text.setAttribute('font-size', '12');
-            text.setAttribute('fill', '#666');
-            text.textContent = `${this.formatXP(xpValue)} XP`;
-            this.svg.appendChild(text);
         }
 
         // Draw axes
@@ -132,6 +130,8 @@ export class XPChart {
             return `${x},${y}`;
         }).join(' ');
 
+        console.log(this.data);
+
         // Draw line
         const polyline = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
         polyline.setAttribute('points', points);
@@ -140,14 +140,10 @@ export class XPChart {
         polyline.setAttribute('stroke-width', '2');
         this.svg.appendChild(polyline);
 
-        // console.log(maxXP);
-
-        // Draw points and x-axis labels
         this.data.forEach((d, i) => {
             const x = this.padding + (i * (chartWidth / (this.data.length - 1)));
             const y = this.height - this.padding - ((d.cumulativeXP - minXP) / (maxXP - minXP) * chartHeight);
 
-            // Data point
             const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
             circle.setAttribute('cx', x);
             circle.setAttribute('cy', y);
@@ -156,16 +152,23 @@ export class XPChart {
             circle.dataset.index = i;
             this.svg.appendChild(circle);
 
-            // X-axis label
-            // const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-            // text.setAttribute('x', x);
-            // text.setAttribute('y', this.height - this.padding + 20);
-            // text.setAttribute('text-anchor', 'middle');
-            // text.setAttribute('font-size', '12');
-            // text.setAttribute('fill', '#666');
-            // text.setAttribute('transform', `rotate(45, ${x}, ${this.height - this.padding + 20})`);
-            // text.textContent = this.formatDate(d.date);
-            // this.svg.appendChild(text);
+            circle.addEventListener('mouseover', (e) => {
+                this.tooltip.innerHTML = `
+                    <div>Amount: +${this.formatXP(d.amount)} XP</div>
+                    <div>Total: ${this.formatXP(d.cumulativeXP)} XP</div>
+                     <div>Name: ${d.object.name}</div>
+                `;
+                this.tooltip.style.display = 'block';
+                this.tooltip.style.left = `${e.pageX}px`;
+                this.tooltip.style.top = `${e.pageY}px`;
+
+                circle.setAttribute('r', '6');
+            });
+
+            circle.addEventListener('mouseout', (e) => {
+                this.tooltip.style.display = 'none';
+                circle.setAttribute('r', '4');
+            });
         });
     }
 }
