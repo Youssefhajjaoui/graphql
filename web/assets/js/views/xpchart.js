@@ -9,7 +9,7 @@ export class XPChart {
 
         // Create SVG element
         this.svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        this.svg.setAttribute('width', '100%');
+        this.svg.setAttribute('width', '50vw');
         this.svg.setAttribute('height', '100%');
         this.svg.setAttribute('viewBox', `0 0 ${this.width} ${this.height}`);
         this.container.appendChild(this.svg);
@@ -26,7 +26,7 @@ export class XPChart {
         const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
         rect.setAttribute('width', this.width);
         rect.setAttribute('height', this.height);
-        rect.setAttribute('fill', 'white');
+        rect.setAttribute('fill', 'transparent');
         this.svg.appendChild(rect);
     }
 

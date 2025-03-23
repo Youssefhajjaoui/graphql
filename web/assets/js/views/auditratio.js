@@ -64,14 +64,14 @@ function createRadarChart(data) {
     upRect.setAttribute("height", `${height / 2}`);
     upRect.setAttribute("x", "0");
     upRect.setAttribute("y", "0");
-    upRect.setAttribute("fill", "blue");
+    upRect.setAttribute("fill", "#70c3ed");
 
     const downRect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
     downRect.setAttribute("width", `${(data.down / (data.up + data.down)) * width}`);
     downRect.setAttribute("height", `${height / 2}`);
     downRect.setAttribute("x", "0");
     downRect.setAttribute("y", `${height / 2}`);
-    downRect.setAttribute("fill", "red");
+    downRect.setAttribute("fill", "#f05b41");
     const testsvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     testsvg.setAttribute("width", `${width}%`);
     testsvg.setAttribute("height", `${height}%`);
@@ -82,7 +82,7 @@ function createRadarChart(data) {
     ratioText.textContent = `Ratio: ${ratioValue}`;
     ratioText.setAttribute("x", "0");
     ratioText.setAttribute("y", `${height - 2}`);
-    ratioText.setAttribute("fill", "black");
+    ratioText.setAttribute("fill", "white");
     ratioText.setAttribute("font-size", "4");
     ratioText.setAttribute("font-family", "Arial, sans-serif");
 

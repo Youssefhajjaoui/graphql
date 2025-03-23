@@ -88,12 +88,12 @@ export class Home {
         <div class="nav-right"></div>
     </nav>
     <div class="content">
-        <aside class="nav-left">
+        <div class="nav-left">
             <div class="user-info"></div>
             <div class="xp-container" id="xp-container">
                 <div class="xp-amount"></div>
             </div>
-        </aside>
+        </div>
 
         <main class="content">
             <div class="user-identifier"></div>
