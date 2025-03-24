@@ -84,7 +84,7 @@ export class Home {
                 <div id="tooltip" style="position: absolute; display: none; background: rgba(0,0,0,0.8); color: white; padding: 8px; border-radius: 4px; font-size: 12px; pointer-events: none; z-index: 1000;"></div>
                 <div class="chart"></div>
             </div>
-
+            <div class="skills-audit">
             <div class="skills-container" id="skills-container">
                 <div class="chart-title">This is some of your skills:</div>
                 <div class="skills"></div>
@@ -92,6 +92,7 @@ export class Home {
 
             <div class="audit-container" id="audit-container">
                 <div class="audit"></div>
+            </div>
             </div>
         </main>
     </div>

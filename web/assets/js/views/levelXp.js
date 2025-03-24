@@ -18,7 +18,7 @@ export class Level {
                              { _and: [{ type: { _eq: "xp" } }, { object: { type: { _eq: "project" } } }] },
                              { _and: [{ type: { _eq: "xp" } }, { object: { type: { _eq: "piscine" } } }] }
                             ]
-                        }
+                         }
                          ) {
     
                         amount
