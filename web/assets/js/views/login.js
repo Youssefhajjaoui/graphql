@@ -10,8 +10,10 @@ export class Login {
     renderHtml() {
         const app = document.querySelector('.app');
         app.innerHTML = "";
-        app.style.display = 'none';
-        const container = document.querySelector('.login');
+        // app.style.display = 'none';
+        const container = document.createElement('div');
+        container.className = 'login';
+        // const container = document.querySelector('.login');
         container.style.display = 'block';
         const form = document.createElement('form');
         form.className = 'login-container';
@@ -52,6 +54,7 @@ export class Login {
         button.type = 'button';
         form.appendChild(button);
         container.appendChild(form);
+        app.appendChild(container);
     }
 
     async submitedata() {

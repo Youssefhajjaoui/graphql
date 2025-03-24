@@ -25,23 +25,11 @@ export class Home {
             body: graphql,
             redirect: 'follow'
         });
-        // if (!response.ok) {
-        //     const data = await response.json();
-        //     if (errorData.errors && errorData.errors.some(error => error.message.includes("Could not verify JMT: JMTExpired"))) {
-        //         console.log("JWT expired or could not be verified");
-        //         localStorage.clear();
-        //         window.history.pushState({}, '', '/login');
-        //         this.router.handleRoute();
-        //         return;
-        //     }
-        //     throw new Error(`HTTP error! status: ${response.status}`);
-        // }
         if (response.ok) {
             data = await response.json();
-            if (data.errors && data.errors.some(error => error.message.includes("Could not verify JWT: JWTExpired"))) {
+            if (data.errors) {
                 localStorage.clear();
-                window.history.pushState({}, '', '/login');
-                this.router.handleRoute();
+                this.router.handleError('401');
                 return;
             }
         } else {
@@ -55,17 +43,11 @@ export class Home {
         const app = document.querySelector('.app');
         this.setupApp();
         app.style.display = 'block';
-        const login = document.querySelector('.login');
-        login.innerHTML = "";
-        // const progress = document.querySelector('.progress');
-        // progress.innerHTML = '';
         const response = await this.getProgress();
-
         const transactions = response.data;
         // console.log(transactions.data.transaction);
         const chart = new XPChart('.chart');
         chart.updateData(transactions);
-        // chart.afterrender();
         const skills = new Radarchart();
         const auditratio = new Audit();
         await auditratio.getAudit();
@@ -75,6 +57,7 @@ export class Home {
         const profile = new Profile(this.router);
         profile.getProfile();
     }
+
     setupApp() {
         const app = document.querySelector('.app');
         app.innerHTML = `    <nav class="navbar">
@@ -123,45 +106,9 @@ export class Home {
         app.append(botton);
 
         botton.addEventListener('click', () => {
-            // console.log('fired');
             localStorage.clear();
             this.router.navigateto('/login');
             botton.remove();
         })
     }
 }
-
-
-{/* <nav class="navbar">
-            <div class="logo">SkillTracker</div>
-            <ul class="nav-links">
-                <li><a href="#xp-container" class="active">Level</a></li>
-                <li><a href="#skills-container">Skills</a></li>
-                <li><a href="#chart-container">Progress</a></li>
-                <li><a href="#audit-container">Audit ratio</a></li>
-            </ul>
-            <div class="nav-right">
-            </div>
-        </nav>
-        <div class="content">
-        <aside class="nav-left">
-        <div class="user-info"></div>
-          <div class="xp-container" id="xp-container">
-            <div class="xp-amount"></div>
-          </div>
-        </aside>
-
-        <div class="user-identifier"></div>
-        <div class="chart-container" id="chart-container">
-<div id="tooltip" style="position: absolute; display: none; background: rgba(0,0,0,0.8); color: white; padding: 8px; border-radius: 4px; font-size: 12px; pointer-events: none; z-index: 1000;"></div>            <div class="chart"></div>
-        </div>
-
-        <div class="skills-container" id="skills-container">
-            <div class="chart-title">this is some of your skills:</div>
-            <div class="skills"></div>
-        </div>
-
-        <div class="audit-container" id="audit-container">
-            <div class="audit"></div>
-        </div>
-        </div> */}

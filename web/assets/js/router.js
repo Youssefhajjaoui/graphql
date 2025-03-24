@@ -17,12 +17,21 @@ export class Router {
             view = new Home(this);
         } else if ((!localStorage.getItem('jwt') && path == '/') || path == '/login') {
             view = new Login(this);
+        } else {
+            view = new ErrorPage('404');
         }
         if (!view) {
             view = new ErrorPage(this);
         }
         view.renderHtml();
         view.afterRender();
+    }
+
+    handleError(type) {
+        console.log('trigred');
+
+        const view = new ErrorPage(type);
+        view.renderHtml();
     }
 
     navigateto(path) {

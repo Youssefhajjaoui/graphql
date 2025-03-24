@@ -5,17 +5,25 @@ export class ErrorPage {
 
     renderHtml() {
         const container = document.querySelector('.app');
+        container.innerHTML = '';
         const errorcontainer = document.createElement('div');
-        errorcontainer.innerHTML = `
-        <div class="error-circle">
-            <span class="error-icon"></span>
-        </div>
-        <h1 class="error-status"></h1>
-        <p class="error-message"></p>
-        <div class="error-code"></div>
-        <button class="back-button" data-link href="/">Go Back</button>
-    `;
         errorcontainer.classList = 'error-container';
+        const circle = document.createElement('div');
+        circle.classList = 'error-circle';
+        const iconError = document.createElement('span');
+        iconError.classList = 'error-icon';
+        circle.appendChild(iconError);
+        errorcontainer.appendChild(circle);
+        const statusError = document.createElement('h1');
+        statusError.classList = 'error-status';
+        errorcontainer.appendChild(statusError);
+        const messageError = document.createElement('p');
+        messageError.classList = 'error-message';
+        errorcontainer.appendChild(messageError);
+        const codeError = document.createElement('div');
+        codeError.classList = 'error-code';
+        errorcontainer.appendChild(codeError);
+        container.appendChild(errorcontainer);
         let icon = null;
         let status = null;
         let message = null;
