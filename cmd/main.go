@@ -35,7 +35,7 @@ func main() {
 		}
 		w.Write(html)
 	})
-	log.Fatalln(http.ListenAndServe(":8080", server))
+	log.Fatalln(http.ListenAndServe(":8000", server))
 }
 
 func RespondWithError(w http.ResponseWriter, data string, status int) {

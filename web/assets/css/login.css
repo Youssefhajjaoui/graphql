@@ -110,7 +110,7 @@ body {
     /* max-height: 150px; */
 }
 
-.skills-audit{
+.skills-audit {
     width: auto;
     /* max-width: 600px; */
     padding: 20px;
@@ -144,7 +144,8 @@ body {
         display: grid;
         grid-template-columns: auto auto auto auto;
     }
-    .nav-links{
+
+    .nav-links {
         display: none;
     }
 }
@@ -380,6 +381,10 @@ svg {
 .data-point {
     fill: white;
     r: 4;
+}
+
+.error-login {
+    color: red;
 }
 
 .error-container {

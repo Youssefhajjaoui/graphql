@@ -9,6 +9,10 @@ export class Login {
     }
     renderHtml() {
         const app = document.querySelector('.app');
+        const error = document.createElement('div');
+        error.className = 'error-login';
+        error.innerHTML = "Error in Login Try again";
+        error.style.display = 'none';
         app.innerHTML = "";
         // app.style.display = 'none';
         const container = document.createElement('div');
@@ -48,6 +52,7 @@ export class Login {
         fieldpassword.setAttribute("placeholder", "Enter your password")
         formgrp1.appendChild(fieldpassword);
         form.append(formgrp1);
+        form.append(error);
         const button = document.createElement('button');
         button.className = 'login-button';
         button.textContent = 'Login';
@@ -76,6 +81,9 @@ export class Login {
             this.jwt = await res.json();
             localStorage.setItem('jwt', this.jwt);
             this.router.navigateto('/');
+        } else {
+            const error = document.querySelector('.error-login');
+            error.style.display = 'block';
         }
     }
 
