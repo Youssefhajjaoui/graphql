@@ -13,7 +13,7 @@ export class Router {
         let view = null;
         // console.log('yes');
 
-        if (localStorage.getItem('jwt') && path == '/') {
+        if (localStorage.getItem('jwt') && path == '/' || localStorage.getItem('jwt') && path == '/login') {
             view = new Home(this);
         } else if ((!localStorage.getItem('jwt') && path == '/') || path == '/login') {
             view = new Login(this);
