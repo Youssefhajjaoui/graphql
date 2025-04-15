@@ -56,5 +56,13 @@ export class ErrorPage {
         messageelem.textContent = message;
         const codeelem = document.querySelector('.error-code');
         codeelem.textContent = code;
+        this.getCss()
+    }
+
+    getCss() {
+        const app = document.querySelector('.app');
+        app.style.display = "flex";
+        app.style.justifyContent = "center";
+        // app.style.justify
     }
 }
