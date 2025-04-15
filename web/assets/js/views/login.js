@@ -62,6 +62,13 @@ export class Login {
         app.appendChild(container);
     }
 
+    getCss() {
+        const app = document.querySelector('.app');
+        app.style.display = "flex";
+        app.style.justifyContent = "center";
+        // app.style.justify
+    }
+
     async submitedata() {
         const name = document.querySelector('.input-name');
         const username = name.value;
@@ -84,10 +91,12 @@ export class Login {
         } else {
             const error = document.querySelector('.error-login');
             error.style.display = 'block';
+
         }
     }
 
     async afterRender() {
+        this.getCss();
         const button = document.querySelector('.login-button');
         button.addEventListener('click', async (event) => {
             await this.submitedata();

@@ -58,10 +58,16 @@ export class Home {
         profile.getProfile();
     }
 
+    Getcss() {
+        const app = document.querySelector('.app');
+        app.style.display = "block";
+       
+    }
+
     setupApp() {
         const app = document.querySelector('.app');
         app.innerHTML = `    <nav class="navbar">
-        <div class="logo">SkillTracker</div>
+        <div class="logo">Graphql</div>
         <ul class="nav-links">
             <li><a href="#xp-container" class="active">Level</a></li>
             <li><a href="#skills-container">Skills</a></li>
@@ -100,6 +106,7 @@ export class Home {
     }
 
     afterRender() {
+        this.Getcss();
         const botton = document.createElement('button');
         botton.className = 'logout';
         botton.textContent = 'logout';

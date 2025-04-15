@@ -4,16 +4,22 @@
     box-sizing: border-box;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 } */
+.app {
+    align-items: center;
+    width: 100%;
+    /* justify-content: center; */
+}
 
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     height: 100vh;
     background-color: #1E1E1E;
     color: white;
+    justify-content: center;
 }
 
 .navbar {
@@ -120,6 +126,7 @@ body {
     text-align: center;
 }
 
+
 .chart-container,
 .skills-container,
 .audit-container {
@@ -148,6 +155,10 @@ body {
     .nav-links {
         display: none;
     }
+
+    .nav-left {
+        margin: auto;
+    }
 }
 
 @media (max-width: 768px) {
@@ -157,10 +168,17 @@ body {
     }
 
     .content {
-        display: grid;
-        grid-column: 1;
-        /* grid-row: 1; */
+        display: flex;
+        flex-direction: column;
         padding: 10px;
+    }
+
+    .chart-container {
+        margin: 2%;
+    }
+
+    .nav-left {
+        margin: auto;
     }
 }
 
@@ -170,10 +188,13 @@ body {
     }
 
     .content {
-        display: grid;
-        grid-column: 1;
-        /* grid-row: 1; */
+        display: flex;
+        flex-direction: column;
         padding: 10px;
+    }
+
+    .chart-container {
+        margin: 2%;
     }
 }
 
@@ -243,11 +264,40 @@ body {
     color: rgba(255, 255, 255, 0.5);
 }
 
+.logout {
+    width: 100%;
+    padding: 0.9rem;
+    background: rgba(57, 73, 171, 0.8);
+    color: white;
+    border: none;
+    border-radius: 0.8rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    color: white;
+    border-radius: 0.8rem;
+    /* font-size: 1rem; */
+    font-weight: 500;
+    /* -webkit-backdrop-filter: blur(5px); */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
 .form-group input:focus {
     outline: none;
     border-color: rgba(255, 255, 255, 0.5);
     background: rgba(255, 255, 255, 0.15);
     box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);
+}
+
+input {
+    box-sizing: border-box;
 }
 
 .login-button {
@@ -385,6 +435,7 @@ svg {
 
 .error-login {
     color: red;
+    padding-bottom: 10px;
 }
 
 .error-container {

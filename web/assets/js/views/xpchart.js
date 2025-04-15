@@ -41,15 +41,9 @@ export class XPChart {
     }
 
     updateData(rawData) {
-        // Process the transaction data
-        // console.log(rawData);
-
         const transactions = rawData.data.transaction;
-
-        // Sort transactions by date
         transactions.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
 
-        // Calculate cumulative XP
         this.data = transactions.map((item, index) => {
             const previousXP = index > 0
                 ? transactions.slice(0, index).reduce((sum, d) => sum + d.amount, 0)
