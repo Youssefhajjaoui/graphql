@@ -29,10 +29,12 @@ export class Home {
             data = await response.json();
             if (data.errors) {
                 localStorage.clear();
+                localStorage.removeItem('jwt')
                 this.router.handleError('401');
                 return;
             }
         } else {
+            localStorage.clear();
             return { valid: false, data: null }
         }
         return { valid: true, data: data }
@@ -61,7 +63,7 @@ export class Home {
     Getcss() {
         const app = document.querySelector('.app');
         app.style.display = "block";
-       
+
     }
 
     setupApp() {

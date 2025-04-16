@@ -91,7 +91,6 @@ export class Login {
         } else {
             const error = document.querySelector('.error-login');
             error.style.display = 'block';
-
         }
     }
 
